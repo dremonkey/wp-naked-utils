@@ -1,0 +1,5 @@
+# System Files
+.DS_Store
+
+# Temp/Generated Files
+tmp/*

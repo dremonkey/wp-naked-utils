@@ -9,9 +9,11 @@ function init_nu_debug()
 	// check to see if the debug_bar plugin is installed and active
 	if( $GLOBALS['debug_bar'] ) {
 		require_once( 'debug-bar/debug-hook-panel.class.php' );
+		require_once( 'debug-bar/debug-styles-panel.class.php' );
 		require_once( 'debug-bar/debug-panel.class.php' );
 		
 		// instantiate
+		new nu_debug_styles_panel();
 		new nu_debug_hook_panel();
 		new nu_debug_panel();
 	}

@@ -56,7 +56,7 @@ class nu_media_utils
 		$size_str = is_array($size) ? implode('',$size) : $size;
 		$cache_key = $the_id . '-' . $size_str;
 		$cache_group = 'media_utils:get_img_src';
-		$img = wp_cache_get( $cache_key, $cache_group );
+		// $img = wp_cache_get( $cache_key, $cache_group );
 
 		if (!$img) {
 
@@ -102,7 +102,8 @@ class nu_media_utils
 				}
 			}
 			// if there is no featured image set 
-			else {
+			else if ($post_id) {
+
 				// retrieve all the images for a post
 				$args = array( 
 					'post_parent' => $post_id, 
@@ -158,7 +159,7 @@ class nu_media_utils
 	        		}
 	        	}
 	        	else {
-	    			$s = $size;
+	    				$s = $size;
 		        	if( $all_sizes[ $s ] ) {
 		        		$img_id = $image->ID;
 		        		

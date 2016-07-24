@@ -104,9 +104,14 @@ class nu_utils
 	 */
 	public static function substr_utf8( $str, $len, $tail = '...')
 	{
-		if ( mb_strlen( $str, 'utf8' ) > $len ) {
-		   $last_space = strrpos( substr( $str, 0, $len ), ' ' ); // find the last space within $len characters
-		   $str = substr( $str, 0, $last_space ) . '...';
+		$str = str_replace("&quot;", '"', $str);
+		$str_len_before = strlen( $str );
+		$str = wp_trim_words( $str, $len );
+		$str_len_after = strlen( $str );
+
+		// if no trimming was required, then do not add the tail
+		if( $str_len_before != $str_len_after ) {
+			$str .= $tail;
 		}
 
 		return $str;
